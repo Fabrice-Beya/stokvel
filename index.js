@@ -3,6 +3,7 @@ var express             = require("express"),
     mongoose            = require('mongoose'),
     bodyParser          = require("body-parser"),
     accountRouter       = require('./routes/account'),
+    stokvelRouter       = require('./routes/stokvel'),
     port                = process.env.PORT || 3001
 
 mongoose.connect('mongodb://localhost/stokveldb', { useNewUrlParser: true });
@@ -18,6 +19,7 @@ app.get("/", function(req, res){
 })
 
 app.use("/api/account", accountRouter);
+app.use("/api/stokvel", stokvelRouter);
 
 app.listen(port, function(){
     console.log("stokvel api server is live")
