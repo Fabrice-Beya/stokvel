@@ -1,0 +1,15 @@
+{
+  "name": "stokvel",
+  "version": "1.0.0",
+  "description": "an api for stokvel based blockchains",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "stokvel",
+    "blockchain"
+  ],
+  "author": "Fabrice Beya",
+  "license": "ISC"
+}
