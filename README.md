@@ -1,23 +1,26 @@
+
+
 # Stokvel
+
 An api for blockchain based stokvels applications.
 
-Get all existing Accounts
 
-Endpoint :
-/api/account
 
-Arguments:
-None
+## Get all existing Accounts
 
-Response:
+**Endpoint** :
+*/api/account*
+
+**Arguments**:
+*None*
+
+**Response**:
 {
   Array of Accout Objects
 }
 
-eg.
+**eg.**
 {
   "name": "John Doe",
   "phoneNumber": "0710000000"
 }
-
-
