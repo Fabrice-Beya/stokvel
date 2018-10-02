@@ -114,20 +114,20 @@ exports.deleteAllStokvel = function(res){
     })
 }
 
-exports.joinStokvel = function(id, res){
+exports.joinStokvel = function(id,accId ,res){
 
-   
-    Account.find({_id:id}, function(err, account){
+    Account.find({_id:accId}, function(err, account){
         if(err){
             console.log(err);
         } else {
-            Stokvel.findOne({_id:id}, account, function(err, updatedStokvel){
+            Stokvel.findOne({_id:id}, function(err, stokvel){
                 if(err){
                     console.log(err);
                 } else {
-                    updatedStokvel.members.push(account);
-                    updatedStokvel.save();
-                    exports.getStokvelById(updatedStokvel._id, res);
+                    console.log(account);
+                    stokvel.members.push(account);
+                    stokvel.save();
+                    exports.getStokvelById(stokvel._id, res);
                 }
             })
         }
@@ -135,7 +135,7 @@ exports.joinStokvel = function(id, res){
 }
 
 exports.leaveStokvel = function(id,account, res){
-    Stokvel.findOne({_id:id}, account, function(err, updatedStokvel){
+    Stokvel.find({_id:id}, account, function(err, updatedStokvel){
         if(err){
             console.log(err);
         } else {

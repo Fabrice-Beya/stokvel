@@ -58,8 +58,8 @@ router.delete("/delete/all", function(req, res){
 })
 
 // join 
-router.post("/join/:id", function(req, res){
-    StokvelController.joinStokvel(req.params.id, res);
+router.post("/join/:id/:accId", function(req, res){
+    StokvelController.joinStokvel(req.params.id,req.params.accId, res);
 })
 
 // unjoin
