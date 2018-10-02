@@ -56,11 +56,18 @@ exports.getStokvelsByManager = function(id, res){
 }
 
 exports.getStokvelManager = function(id, res){
-    Stokvel.find({_id:id}, function(err, stokvels){
+    Stokvel.find({_id:id}, function(err, stokvel){
         if(err){
             console.log(err);
         } else {
-            res.json(stokvels.manager);
+            Account.find({_id:stokvel[0].manager.id}, function(err, account){
+                if(err){
+                    console.log(err);
+                } else {
+                    res.json(account);
+                }
+            })
+            
         }
     })
 }
@@ -124,24 +131,29 @@ exports.joinStokvel = function(id,accId ,res){
                 if(err){
                     console.log(err);
                 } else {
-                    console.log(account);
-                    stokvel.members.push(account);
+                    stokvel.members.push(account[0]);
                     stokvel.save();
-                    exports.getStokvelById(stokvel._id, res);
+                    res.json(stokvel)
                 }
             })
         }
     })
 }
 
-exports.leaveStokvel = function(id,account, res){
-    Stokvel.find({_id:id}, account, function(err, updatedStokvel){
+exports.unJoinStokvel = function(id,accId, res){
+    Account.find({_id:accId}, function(err, account){
         if(err){
             console.log(err);
         } else {
-            updatedStokvel.members.pop(account);
-            updatedStokvel.save();
-            exports.getStokvelById(updatedStokvel._id, res);
+            Stokvel.findOne({_id:id}, function(err, stokvel){
+                if(err){
+                    console.log(err);
+                } else {
+                    stokvel.members.pop(account[0]);
+                    stokvel.save();
+                    res.json(stokvel)
+                }
+            })
         }
     })
 }

@@ -23,12 +23,12 @@ router.get("/:id", function(req, res){
 })
 
 // get by manager
-router.get("/managed/:id", function(req, res){
+router.get("/manager/:id", function(req, res){
     StokvelController.getStokvelsByManager(req.params.id, res);
 })
 
-// get stokvel manager
-router.get("/manager/:id", function(req, res){
+// get stokvels manager
+router.get("/managed/:id", function(req, res){
     StokvelController.getStokvelManager(req.params.id, res);
 })
 
@@ -38,7 +38,7 @@ router.post("/", function(req, res){
 })
 
 // post new  
-router.post("/accounts", function(req, res){
+router.post("/stokvels", function(req, res){
     StokvelController.createStokvels(req.body, res);
 })
 
@@ -52,7 +52,7 @@ router.delete("/:id", function(req, res){
     StokvelController.deleteStokvel(req.params.id, res);
 })
 
-// delete all accounts 
+// delete all  
 router.delete("/delete/all", function(req, res){
     StokvelController.deleteAllStokvel(res);
 })
@@ -63,8 +63,8 @@ router.post("/join/:id/:accId", function(req, res){
 })
 
 // unjoin
-router.post("/unjoin/:id", function(req, res){
-    StokvelController.joinStokvel(req.params.id, res);
+router.post("/unjoin/:id/:accId", function(req, res){
+    StokvelController.unJoinStokvel(req.params.id,req.params.accId, res);
 })
 
 module.exports = router;
