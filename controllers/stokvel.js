@@ -84,9 +84,14 @@ exports.createStokvel = function(stokvel, res){
     })
 }
 
-exports.createStokvels = function(req, res){
-    req.body.forEach(stokvel => {
-        exports.createAccount(stokvel);
+exports.createStokvels = async function(stokvels, res){
+    await stokvels.forEach(stokvel => {
+        Stokvel.create(stokvel, function(err, newStokvel){
+            if(err){
+                console.log(err);
+            } else {
+            }
+        })
     });
     exports.getAll(res);
 }

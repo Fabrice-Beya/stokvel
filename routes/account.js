@@ -7,12 +7,12 @@ router.get("/", function(req, res){
     AccountController.getAll(res);
 })
 
-// get account by id
+// get by id
 router.get("/:id", function(req, res){
     AccountController.getAccountById(req.params.id, res);
 })
 
-// get account by address
+// get by address
 router.get("/address/:id", function(req, res){
     AccountController.getAccountByAddress(req.params.id, res);
 })

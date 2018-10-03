@@ -51,15 +51,20 @@ exports.createTransaction = function(transaction, res){
     })
 }
 
-exports.createTransactions = function(req, res){
-    req.body.forEach(transaction => {
-        exports.createAccount(transaction);
+exports.createTransactions = async function(transactions, res){
+    await transactions.forEach(transaction => {
+        Transaction.create(transaction, function(err, newTransaction){
+            if(err){
+                console.log(err);
+            } else {
+            }
+        })
     });
     exports.getAll(res);
 }
 
-exports.updateTransaction = function(Transaction, res){
-    Transaction.findOneAndUpdate({_id:Transaction._id}, Transaction, function(err, updatedTransaction){
+exports.updateTransaction = function(transaction, res){
+    Transaction.findOneAndUpdate({_id:transaction._id}, transaction, function(err, updatedTransaction){
         if(err){
             console.log(err);
         } else {

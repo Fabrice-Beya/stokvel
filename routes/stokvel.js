@@ -7,6 +7,11 @@ router.get("/", function(req, res){
     StokvelController.getAll(res);
 })
 
+// get by id
+router.get("/:id", function(req, res){
+    StokvelController.getStokvelById(req.params.id, res);
+})
+
 // get all members
 router.get("/members/:id", function(req, res){
     StokvelController.getAllMembers(req.params.id, res);
@@ -15,11 +20,6 @@ router.get("/members/:id", function(req, res){
 // get all stokvels per member
 router.get("/member/:id", function(req, res){
     StokvelController.getAllMembers(req.params.id, res);
-})
-
-// get by id
-router.get("/:id", function(req, res){
-    StokvelController.getStokvelById(req.params.id, res);
 })
 
 // get by manager

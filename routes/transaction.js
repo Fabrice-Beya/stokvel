@@ -7,14 +7,14 @@ router.get("/", function(req, res){
     TransactionController.getAll(res);
 })
 
-// get all transaction for an address
-router.get("/address/:id", function(req, res){
-    TransactionController.getTransactionsByAddress(req.params.id, res);
-})
-
 // get by id
 router.get("/:id", function(req, res){
     TransactionController.getTransactionById(req.params.id, res);
+})
+
+// get all by address
+router.get("/address/:id", function(req, res){
+    TransactionController.getTransactionsByAddress(req.params.id, res);
 })
 
 // post new  
