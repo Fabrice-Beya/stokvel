@@ -6,6 +6,8 @@ var express             = require("express"),
     stokvelRouter       = require('./routes/stokvel'),
     transactionRouter   = require('./routes/transaction'),
     proposalRouter      = require('./routes/proposal'),
+    passport            = require("passport"),
+    LocalStrategy       = require("passport-local"),
     port                = process.env.PORT || 3001
 
 mongoose.connect('mongodb://localhost/stokveldb', { useNewUrlParser: true });
@@ -15,6 +17,18 @@ app.use(bodyParser.json());
 app.set("view engine", "ejs");
 
 app.use(express.static("public"));
+
+//Configure Passport
+app.use(require("express-session")({
+    secret : "Sight of Light too Bright to Fight",
+    resave : false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy( Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
 
 app.get("/", function(req, res){
     res.send("Welcome to stokvel api");

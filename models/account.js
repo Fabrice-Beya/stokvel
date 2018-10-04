@@ -1,4 +1,5 @@
-var mongoose    = require("mongoose");
+var mongoose               = require("mongoose"),
+    passportLocalMongoose  = require("passport-local-mongoose");
 
 var accountSchema = mongoose.Schema({
    name : String,
@@ -6,5 +7,7 @@ var accountSchema = mongoose.Schema({
    balance: Number,
    wallet: Object,
 });
+
+accountSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("Account", accountSchema);
