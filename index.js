@@ -18,6 +18,7 @@ app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 
+
 //Configure Passport
 app.use(require("express-session")({
     secret : "Sight of Light too Bright to Fight",
